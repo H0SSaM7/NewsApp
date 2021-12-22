@@ -11,6 +11,13 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(NewsInitialStates());
 
   static AppCubit get(BuildContext context) => BlocProvider.of(context);
+  bool isDark = false;
+
+  changeTheme() {
+    isDark = !isDark;
+    emit(NewsChangeThemeState());
+  }
+
   News news = News();
   int currentIndex = 0;
   List<BottomNavigationBarItem> items = const [
@@ -31,12 +38,6 @@ class AppCubit extends Cubit<AppStates> {
     const ScienceScreen(),
     const SportsScreen(),
   ];
-  bool isDarkTheme = false;
-
-  changeToDarkTheme(bool isDark) {
-    isDarkTheme = isDark;
-    emit(NewsChangeThemeStates());
-  }
 
   List<News> business = [];
   List<News> sports = [];
@@ -58,7 +59,6 @@ class AppCubit extends Cubit<AppStates> {
           throw ('states code error');
         }
       }
-      print(business.length.toString());
       emit(NewsGettingBusinessData());
     }).catchError((onError) {
       emit(NewsOnLoadingGettingBusinessData());

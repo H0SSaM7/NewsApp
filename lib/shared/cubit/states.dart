@@ -4,8 +4,6 @@ class NewsInitialStates extends AppStates {}
 
 class NewsChangeNavBarStates extends AppStates {}
 
-class NewsChangeThemeStates extends AppStates {}
-
 class NewsGettingBusinessData extends AppStates {}
 
 class NewsErrorGettingBusinessData extends AppStates {}
@@ -23,3 +21,5 @@ class NewsGettingScienceData extends AppStates {}
 class NewsErrorGettingScienceData extends AppStates {}
 
 class NewsOnLoadingGettingScienceData extends AppStates {}
+
+class NewsChangeThemeState extends AppStates {}

@@ -10,34 +10,28 @@ class HomeNewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit()
-        ..getBusinessData()
-        ..getScienceData()
-        ..getSportsData(),
-      child: BlocConsumer<AppCubit, AppStates>(
-        listener: (context, states) {},
-        builder: (context, states) {
-          AppCubit cubit = AppCubit.get(context);
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('News App'),
-              actions: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-              ],
-            ),
-            drawer: const SettingsScreen(),
-            bottomNavigationBar: BottomNavigationBar(
-              items: cubit.items,
-              currentIndex: cubit.currentIndex,
-              onTap: (index) {
-                cubit.changeNavbarIndex(index);
-              },
-            ),
-            body: cubit.screens[cubit.currentIndex],
-          );
-        },
-      ),
+    return BlocConsumer<AppCubit, AppStates>(
+      listener: (context, states) {},
+      builder: (context, states) {
+        AppCubit cubit = AppCubit.get(context);
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('News App'),
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+            ],
+          ),
+          drawer: const SettingsScreen(),
+          bottomNavigationBar: BottomNavigationBar(
+            items: cubit.items,
+            currentIndex: cubit.currentIndex,
+            onTap: (index) {
+              cubit.changeNavbarIndex(index);
+            },
+          ),
+          body: cubit.screens[cubit.currentIndex],
+        );
+      },
     );
   }
 }

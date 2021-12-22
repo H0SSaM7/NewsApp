@@ -65,9 +65,5 @@ class ThemesHelper {
         selectedItemColor: Colors.deepOrange,
         unselectedItemColor: Color(0xffbdbdbd),
       ),
-      switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.all(Colors.deepOrange),
-        trackColor: MaterialStateProperty.all(Colors.grey),
-      ),
       dividerColor: Colors.white);
 }

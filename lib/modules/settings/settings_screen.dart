@@ -12,9 +12,10 @@ class SettingsScreen extends StatelessWidget {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        AppCubit _cubit = AppCubit.get(context);
         return SafeArea(
           child: Container(
-            color: const Color(0xff22345d),
+            color: _cubit.isDark ? Colors.white : const Color(0xff22345d),
             width: 220,
             child: Column(
               children: [
@@ -22,16 +23,17 @@ class SettingsScreen extends StatelessWidget {
                 Text('News App', style: Theme.of(context).textTheme.headline1),
                 const Divider(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       'DarkTheme',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Switch.adaptive(
-                      value: AppCubit.get(context).isDarkTheme,
+                      value: _cubit.isDark,
+                      activeColor: Colors.deepOrange,
                       onChanged: (index) {
-                        AppCubit.get(context).changeToDarkTheme(index);
+                        _cubit.changeTheme();
                       },
                     ),
                   ],
