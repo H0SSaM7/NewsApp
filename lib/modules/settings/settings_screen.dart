@@ -14,28 +14,19 @@ class SettingsScreen extends StatelessWidget {
       builder: (context, state) {
         return SafeArea(
           child: Container(
-            color: Colors.white,
+            color: const Color(0xff22345d),
             width: 220,
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                const Text(
-                  'News App',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
+                Text('News App', style: Theme.of(context).textTheme.headline1),
                 const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'DarkTheme',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Switch.adaptive(
                       value: AppCubit.get(context).isDarkTheme,

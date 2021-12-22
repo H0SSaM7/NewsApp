@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/layouts/home/home_screen.dart';
 import 'package:news_app/services/remote/dio_helper.dart';
 import 'package:news_app/shared/bloc_observer.dart';
+import 'package:news_app/shared/theme/themes.dart';
 
 void main() {
   BlocOverrides.runZoned(
@@ -22,29 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'News App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.white,
-              elevation: 0.0,
-              centerTitle: true,
-              actionsIconTheme: IconThemeData(
-                color: Colors.black,
-              ),
-              iconTheme: IconThemeData(
-                color: Colors.black,
-              ),
-              titleTextStyle: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              )),
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            selectedItemColor: Colors.deepOrange,
-          ),
-          switchTheme: SwitchThemeData(
-            thumbColor: MaterialStateProperty.all(Colors.deepOrange),
-            trackColor: MaterialStateProperty.all(Colors.grey),
-          )),
+      themeMode: ThemeMode.dark,
+      theme: ThemesHelper.lightTheme,
+      darkTheme: ThemesHelper.darkTheme,
       home: const HomeNewsScreen(),
     );
   }
