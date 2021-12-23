@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/modules/search/search_screen.dart';
 import 'package:news_app/modules/settings/settings_screen.dart';
 
 import 'package:news_app/shared/cubit/cubit.dart';
@@ -18,7 +19,14 @@ class HomeNewsScreen extends StatelessWidget {
           appBar: AppBar(
             title: const Text('News App'),
             actions: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SearchScreen()));
+                  },
+                  icon: const Icon(Icons.search))
             ],
           ),
           drawer: const SettingsScreen(),

@@ -67,3 +67,36 @@ Widget _getImage(String? url) {
     return image;
   }
 }
+
+TextFormField defaultFormField({
+  required TextInputType type,
+  bool? isObscure,
+  required TextEditingController controller,
+  Function()? onTap,
+  required Widget icon,
+  required String title,
+  bool? readOnly,
+  required String validateText,
+  Function(String)? onChange,
+}) {
+  return TextFormField(
+    onChanged: onChange,
+    readOnly: readOnly ?? false,
+    keyboardType: type,
+    obscureText: false,
+    controller: controller,
+    onTap: onTap,
+    validator: (value) {
+      if (value!.isEmpty) {
+        return validateText;
+      } else {
+        null;
+      }
+    },
+    decoration: InputDecoration(
+      border: const OutlineInputBorder(),
+      prefixIcon: icon,
+      hintText: title,
+    ),
+  );
+}

@@ -50,6 +50,7 @@ class AppCubit extends Cubit<AppStates> {
   List<News> business = [];
   List<News> sports = [];
   List<News> science = [];
+  List<News> search = [];
 
   getBusinessData() {
     DioHelper.getData(path: 'v2/top-headlines', quires: {
@@ -113,6 +114,28 @@ class AppCubit extends Cubit<AppStates> {
       emit(NewsGettingSportsData());
     }).catchError((onError) {
       emit(NewsErrorGettingSportsData());
+      debugPrint(onError.toString() + '(error in getting business data)');
+    });
+  }
+
+  getSearchData({required String value}) {
+    search = [];
+    DioHelper.getData(path: 'v2/everything', quires: {
+      'q': value,
+      'apiKey': '2d229d8ac5254240bd2531ec179d123a',
+    }).then((value) {
+      List data;
+      data = value.data!['articles'];
+      for (var article in data) {
+        if (value.statusCode == 200) {
+          search.add(news.fromJson(article));
+        } else {
+          throw ('states code error');
+        }
+      }
+      emit(NewsGettingSearchData());
+    }).catchError((onError) {
+      emit(NewsErrorGettingSearchData());
       debugPrint(onError.toString() + '(error in getting business data)');
     });
   }

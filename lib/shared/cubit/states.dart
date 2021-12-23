@@ -16,6 +16,10 @@ class NewsGettingScienceData extends AppStates {}
 
 class NewsErrorGettingScienceData extends AppStates {}
 
+class NewsGettingSearchData extends AppStates {}
+
+class NewsErrorGettingSearchData extends AppStates {}
+
 class NewsChangeThemeState extends AppStates {}
 
 class NewsGetThemeState extends AppStates {}

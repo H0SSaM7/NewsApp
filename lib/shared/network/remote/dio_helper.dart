@@ -23,3 +23,5 @@ class DioHelper {
 // 2d229d8ac5254240bd2531ec179d123a
 
 //https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=2d229d8ac5254240bd2531ec179d123a
+
+//https://newsapi.org/v2/everything?q=tesla&from=2021-11-23&sortBy=publishedAt&apiKey=2d229d8ac5254240bd2531ec179d123a
