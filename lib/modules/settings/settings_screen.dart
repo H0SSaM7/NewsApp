@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
         AppCubit _cubit = AppCubit.get(context);
         return SafeArea(
           child: Container(
-            color: _cubit.isDark ? Colors.white : const Color(0xff22345d),
+            color: _cubit.isDark ? const Color(0xff22345d) : Colors.white,
             width: 220,
             child: Column(
               children: [

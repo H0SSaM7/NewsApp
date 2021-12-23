@@ -4,8 +4,10 @@ import 'package:news_app/models/news.dart';
 import 'package:news_app/modules/business/business_screen.dart';
 import 'package:news_app/modules/science/science_screen.dart';
 import 'package:news_app/modules/sports/sports_screen.dart';
-import 'package:news_app/services/remote/dio_helper.dart';
+
 import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/shared/network/local/cache_helper.dart';
+import 'package:news_app/shared/network/remote/dio_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(NewsInitialStates());
@@ -15,7 +17,13 @@ class AppCubit extends Cubit<AppStates> {
 
   changeTheme() {
     isDark = !isDark;
-    emit(NewsChangeThemeState());
+    CacheHelper.storageData(key: 'isDark', value: isDark)
+        .then((value) => emit(NewsChangeThemeState()));
+  }
+
+  getTheme() {
+    isDark = CacheHelper.getData(key: 'isDark') ?? false;
+    emit(NewsGetThemeState());
   }
 
   News news = News();
@@ -44,7 +52,6 @@ class AppCubit extends Cubit<AppStates> {
   List<News> science = [];
 
   getBusinessData() {
-    emit(NewsOnLoadingGettingBusinessData());
     DioHelper.getData(path: 'v2/top-headlines', quires: {
       'country': 'eg',
       'category': 'business',
@@ -61,13 +68,12 @@ class AppCubit extends Cubit<AppStates> {
       }
       emit(NewsGettingBusinessData());
     }).catchError((onError) {
-      emit(NewsOnLoadingGettingBusinessData());
+      emit(NewsErrorGettingBusinessData());
       debugPrint(onError.toString() + '(error in getting business data)');
     });
   }
 
   getScienceData() {
-    emit(NewsOnLoadingGettingScienceData());
     DioHelper.getData(path: 'v2/top-headlines', quires: {
       'country': 'eg',
       'category': 'science',
@@ -84,13 +90,12 @@ class AppCubit extends Cubit<AppStates> {
       }
       emit(NewsGettingScienceData());
     }).catchError((onError) {
-      emit(NewsOnLoadingGettingScienceData());
+      emit(NewsErrorGettingScienceData());
       debugPrint(onError.toString() + '(error in getting business data)');
     });
   }
 
   getSportsData() {
-    emit(NewsOnLoadingGettingSportsData());
     DioHelper.getData(path: 'v2/top-headlines', quires: {
       'country': 'eg',
       'category': 'sports',
@@ -107,7 +112,7 @@ class AppCubit extends Cubit<AppStates> {
       }
       emit(NewsGettingSportsData());
     }).catchError((onError) {
-      emit(NewsOnLoadingGettingSportsData());
+      emit(NewsErrorGettingSportsData());
       debugPrint(onError.toString() + '(error in getting business data)');
     });
   }
