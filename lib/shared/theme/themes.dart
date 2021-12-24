@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ThemesHelper {
   static ThemeData lightTheme = ThemeData(
+      hintColor: Colors.black,
+      iconTheme: const IconThemeData(color: Colors.black),
       textTheme: const TextTheme(
         bodyText1: TextStyle(
           color: Colors.black,
@@ -10,6 +12,8 @@ class ThemesHelper {
         ),
         headline1: TextStyle(
             color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+        subtitle1: TextStyle(
+            color: Colors.black, fontSize: 12, fontWeight: FontWeight.w400),
       ),
       appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
@@ -35,6 +39,8 @@ class ThemesHelper {
       ));
 
   static ThemeData darkTheme = ThemeData(
+      hintColor: Colors.white,
+      iconTheme: const IconThemeData(color: Colors.white),
       textTheme: const TextTheme(
         bodyText1: TextStyle(
           color: Color(0xffd7dddc),
@@ -43,6 +49,8 @@ class ThemesHelper {
         ),
         headline1: TextStyle(
             color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+        subtitle1: TextStyle(
+            color: Colors.white, fontSize: 12, fontWeight: FontWeight.w400),
       ),
       scaffoldBackgroundColor: const Color(0xff22345d),
       appBarTheme: const AppBarTheme(

@@ -31,10 +31,14 @@ class SearchScreen extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 20, right: 10, bottom: 20),
                       child: defaultFormField(
+                          context: context,
                           type: TextInputType.text,
                           isObscure: false,
                           controller: searchController,
-                          icon: const Icon(Icons.search),
+                          icon: Icon(
+                            Icons.search,
+                            color: Theme.of(context).iconTheme.color,
+                          ),
                           title: 'Search',
                           validateText: 'Search bar must not be empty',
                           onChange: (value) {

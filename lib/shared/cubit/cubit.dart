@@ -54,7 +54,7 @@ class AppCubit extends Cubit<AppStates> {
 
   getBusinessData() {
     DioHelper.getData(path: 'v2/top-headlines', quires: {
-      'country': 'eg',
+      'country': 'us',
       'category': 'business',
       'apiKey': '2d229d8ac5254240bd2531ec179d123a',
     }).then((value) {
@@ -76,7 +76,7 @@ class AppCubit extends Cubit<AppStates> {
 
   getScienceData() {
     DioHelper.getData(path: 'v2/top-headlines', quires: {
-      'country': 'eg',
+      'country': 'us',
       'category': 'science',
       'apiKey': '2d229d8ac5254240bd2531ec179d123a',
     }).then((value) {
@@ -98,7 +98,7 @@ class AppCubit extends Cubit<AppStates> {
 
   getSportsData() {
     DioHelper.getData(path: 'v2/top-headlines', quires: {
-      'country': 'eg',
+      'country': 'us',
       'category': 'sports',
       'apiKey': '2d229d8ac5254240bd2531ec179d123a',
     }).then((value) {
