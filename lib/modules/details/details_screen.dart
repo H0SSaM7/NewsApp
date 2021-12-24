@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news.dart';
+import 'package:news_app/modules/web_view/web_view.dart';
+
 import 'package:news_app/shared/components/components.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -79,7 +81,13 @@ class DetailsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  WebViewScreen(url: article.url!)));
+                    },
                     child: const Text('Jump to The Resource.'),
                     style: ElevatedButton.styleFrom(
                         primary: Colors.deepOrange,

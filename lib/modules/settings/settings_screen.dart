@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'DarkTheme',
+                      'Change Theme',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     Switch.adaptive(

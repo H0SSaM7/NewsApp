@@ -107,6 +107,16 @@ TextFormField defaultFormField({
       }
     },
     decoration: InputDecoration(
+        suffix: InkWell(
+          onTap: () {
+            controller.text = '';
+          },
+          child: const Icon(
+            Icons.cancel_outlined,
+            color: Colors.black,
+            size: 17,
+          ),
+        ),
         border: OutlineInputBorder(
             borderSide: BorderSide(color: Theme.of(context).hintColor)),
         prefixIcon: icon,
