@@ -56,10 +56,10 @@ class DetailsScreen extends StatelessWidget {
                       fontWeight: FontWeight.w400),
                 ),
               ),
-              Text(
-                article.description ?? '',
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
+              Text(article.description ?? '',
+                  style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        color: Colors.grey[700],
+                      )),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
@@ -72,7 +72,10 @@ class DetailsScreen extends StatelessWidget {
               ),
               Text(
                 article.content ?? '',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1!
+                    .copyWith(color: Colors.grey[700]),
               ),
               const SizedBox(
                 height: 20,

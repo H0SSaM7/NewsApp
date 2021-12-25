@@ -16,13 +16,13 @@ Widget buildListViewArticles(List<dynamic> articles) {
           },
           child: Container(
             margin: const EdgeInsets.all(11),
-            height: 120,
+            height: 135,
             child: Row(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: getImage(
-                      url: articles[index].imageUrl, height: 120, width: 130),
+                      url: articles[index].imageUrl, height: 130, width: 130),
                 ),
                 const SizedBox(
                   width: 10,
