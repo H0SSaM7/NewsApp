@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/modules/details/details_screen.dart';
+import 'package:news_app/shared/components/widgets/shimmer_loading_widget.dart';
 
 Widget buildListViewArticles(List<dynamic> articles) {
   return ListView.separated(
@@ -122,5 +123,40 @@ TextFormField defaultFormField({
         prefixIcon: icon,
         hintText: title,
         hintStyle: Theme.of(context).textTheme.subtitle1),
+  );
+}
+
+Widget shimmerSkeleton() {
+  return ListView.separated(
+    itemBuilder: (context, index) {
+      return Container(
+        height: 120,
+        width: 120,
+        margin: const EdgeInsets.all(10),
+        child: Row(
+          children: [
+            const MyShimmerWidget(width: 120, height: 120),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                SizedBox(
+                  height: 5,
+                ),
+                MyShimmerWidget(width: double.infinity, height: 10),
+                MyShimmerWidget(width: double.infinity, height: 10),
+                MyShimmerWidget(width: double.infinity, height: 10),
+                SizedBox(
+                  height: 20,
+                ),
+                MyShimmerWidget(width: 120, height: 10)
+              ],
+            ))
+          ],
+        ),
+      );
+    },
+    separatorBuilder: (context, index) => const Divider(),
+    itemCount: 15,
   );
 }

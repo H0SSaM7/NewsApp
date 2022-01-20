@@ -14,7 +14,7 @@ class SportsScreen extends StatelessWidget {
         builder: (context, state) {
           List articles = AppCubit.get(context).sports;
           if (AppCubit.get(context).sports.isEmpty) {
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return shimmerSkeleton();
           } else {
             return buildListViewArticles(articles);
           }

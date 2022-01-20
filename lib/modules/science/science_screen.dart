@@ -14,7 +14,7 @@ class ScienceScreen extends StatelessWidget {
         builder: (context, state) {
           List articles = AppCubit.get(context).science;
           if (AppCubit.get(context).science.isEmpty) {
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return shimmerSkeleton();
           } else {
             return buildListViewArticles(articles);
           }

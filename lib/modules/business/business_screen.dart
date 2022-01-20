@@ -14,8 +14,10 @@ class BusinessScreen extends StatelessWidget {
         builder: (context, state) {
           List articles = AppCubit.get(context).business;
           if (AppCubit.get(context).business.isEmpty) {
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return shimmerSkeleton();
           } else {
+            return shimmerSkeleton();
+
             return buildListViewArticles(articles);
           }
         });
