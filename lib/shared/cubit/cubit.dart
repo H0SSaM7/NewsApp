@@ -1,14 +1,15 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/models/news.dart';
-import 'package:news_app/modules/business/business_screen.dart';
-import 'package:news_app/modules/science/science_screen.dart';
-import 'package:news_app/modules/sports/sports_screen.dart';
+import 'package:news_app/models/news_model.dart';
+import 'package:news_app/repository/sports_news_api.dart';
 
 import 'package:news_app/shared/cubit/states.dart';
 import 'package:news_app/shared/network/local/cache_helper.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
+import 'package:news_app/view/business/business_screen.dart';
+import 'package:news_app/view/science/science_screen.dart';
+import 'package:news_app/view/sports/sports_screen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(NewsInitialStates());
@@ -27,7 +28,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(NewsGetThemeState());
   }
 
-  News news = News();
+  NewsModel news = NewsModel();
   int currentIndex = 0;
   List<TabItem> items = const [
     TabItem(icon: Icons.stacked_bar_chart, title: 'Business'),
@@ -54,10 +55,10 @@ class AppCubit extends Cubit<AppStates> {
     getScienceData();
   }
 
-  List<News> business = [];
-  List<News> sports = [];
-  List<News> science = [];
-  List<News> search = [];
+  List<NewsModel> business = [];
+  List<NewsModel> sports = [];
+  List<NewsModel> science = [];
+  List<NewsModel> search = [];
   var countryKey = CachedHelper.getPref(key: 'countryKey') ?? 'eg';
 
   getBusinessData() {
@@ -107,26 +108,36 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   getSportsData() {
-    DioHelper.getData(path: 'v2/top-headlines', quires: {
-      'country': countryKey,
-      'category': 'sports',
-      'apiKey': '2d229d8ac5254240bd2531ec179d123a',
-    }).then((value) {
-      sports = [];
-      List data;
-      data = value.data!['articles'];
-      for (var article in data) {
-        if (value.statusCode == 200) {
-          sports.add(news.fromJson(article));
-        } else {
-          throw ('states code error');
-        }
-      }
-      emit(NewsGettingSportsData());
-    }).catchError((onError) {
-      emit(NewsErrorGettingSportsData());
-      debugPrint(onError.toString() + '(error in getting business data)');
-    });
+    SportsNewsApi().getNews(countryKey).then(
+      (value) {
+        sports = value;
+        emit(NewsGettingSportsData());
+      },
+    ).catchError(
+      (err) {
+        NewsErrorGettingSportsData();
+      },
+    );
+    // DioHelper.getData(path: 'v2/top-headlines', quires: {
+    //   'country': countryKey,
+    //   'category': 'sports',
+    //   'apiKey': '2d229d8ac5254240bd2531ec179d123a',
+    // }).then((value) {
+    //   sports = [];
+    //   List data;
+    //   data = value.data!['articles'];
+    //   for (var article in data) {
+    //     if (value.statusCode == 200) {
+    //       sports.add(news.fromJson(article));
+    //     } else {
+    //       throw ('states code error');
+    //     }
+    //   }
+    //   emit(NewsGettingSportsData());
+    // }).catchError((onError) {
+    //   emit(NewsErrorGettingSportsData());
+    //   debugPrint(onError.toString() + '(error in getting business data)');
+    // });
   }
 
   getSearchData({required String value}) {

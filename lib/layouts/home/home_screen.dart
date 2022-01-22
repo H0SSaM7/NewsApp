@@ -1,11 +1,11 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/modules/search/search_screen.dart';
-import 'package:news_app/modules/settings/settings_screen.dart';
 
 import 'package:news_app/shared/cubit/cubit.dart';
 import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/view/search/search_screen.dart';
+import 'package:news_app/view/settings/settings_screen.dart';
 
 class HomeNewsScreen extends StatelessWidget {
   const HomeNewsScreen({Key? key}) : super(key: key);
@@ -21,18 +21,19 @@ class HomeNewsScreen extends StatelessWidget {
             title: const Text('News App'),
             actions: [
               IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SearchScreen(),
-                      ),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.deepOrange,
-                  ))
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
+                    ),
+                  );
+                },
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.deepOrange,
+                ),
+              )
             ],
           ),
           drawer: const SettingsScreen(),

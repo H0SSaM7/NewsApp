@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/modules/details/details_screen.dart';
+
 import 'package:news_app/shared/components/widgets/shimmer_loading_widget.dart';
+import 'package:news_app/view/details/details_screen.dart';
 
 Widget buildListViewArticles(List<dynamic> articles) {
   return ListView.separated(

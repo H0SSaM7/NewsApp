@@ -1,4 +1,4 @@
-class News {
+class NewsModel {
   String? title;
   String? description;
   String? url;
@@ -6,7 +6,7 @@ class News {
   String? content;
   String? publishAt;
 
-  News({
+  NewsModel({
     this.title,
     this.description,
     this.url,
@@ -14,8 +14,8 @@ class News {
     this.content,
     this.publishAt,
   });
-  News fromJson(Map<String, dynamic> newsList) {
-    return News(
+  NewsModel fromJson(Map<String, dynamic> newsList) {
+    return NewsModel(
         title: newsList['title'],
         description: newsList['description'],
         url: newsList['url'],
