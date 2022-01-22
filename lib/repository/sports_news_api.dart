@@ -23,7 +23,6 @@ class SportsNewsApi extends NewsRepository {
     } catch (err) {
       print(err.toString());
     }
-    print(sportsList);
     return sportsList;
   }
 }
