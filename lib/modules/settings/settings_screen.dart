@@ -15,8 +15,11 @@ class SettingsScreen extends StatelessWidget {
         AppCubit _cubit = AppCubit.get(context);
         return SafeArea(
           child: Container(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            width: 250,
+            width: MediaQuery.of(context).size.width * 0.75,
+            decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                borderRadius: const BorderRadiusDirectional.only(
+                    bottomEnd: Radius.elliptical(200, 200))),
             child: Column(
               children: [
                 const SizedBox(height: 20),
@@ -28,8 +31,8 @@ class SettingsScreen extends StatelessWidget {
                 Text('News App', style: Theme.of(context).textTheme.headline1),
                 const Divider(),
                 ListTile(
-                  leading: Icon(Icons.lightbulb_outline_rounded,
-                      color: Theme.of(context).iconTheme.color),
+                  leading: const Icon(Icons.lightbulb_outline_rounded,
+                      color: Colors.deepOrange),
                   title: const Text(
                     'Dark Mood',
                   ),
@@ -42,10 +45,46 @@ class SettingsScreen extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  leading: Icon(Icons.circle,
-                      color: Theme.of(context).iconTheme.color),
-                  title: const Text('Select conutry'),
-                  onTap: () {},
+                  leading: const Icon(Icons.location_city_outlined,
+                      color: Colors.deepOrange),
+                  title: const Text('Select Country'),
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                              title: const Text('Available Countries'),
+                              content: SizedBox(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ListTile(
+                                      title: const Text('Egypt'),
+                                      leading: Radio<String>(
+                                        value: 'eg',
+                                        groupValue: _cubit.countryKey,
+                                        onChanged: (value) {
+                                          _cubit.changeRadioValue(value!);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                    ListTile(
+                                      title: const Text('USA'),
+                                      leading: Radio<String>(
+                                        value: 'us',
+                                        groupValue: _cubit.countryKey,
+                                        onChanged: (value) {
+                                          _cubit.changeRadioValue(value!);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ));
+                        });
+                  },
                 )
               ],
             ),

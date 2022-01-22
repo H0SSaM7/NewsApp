@@ -13,7 +13,7 @@ void main() {
   BlocOverrides.runZoned(
     () async {
       DioHelper.init();
-      await CacheHelper.init();
+      await CachedHelper.init();
       // bool? storageTheme= CacheHelper.getData(key: 'isDark');
       runApp(const MyApp());
     },

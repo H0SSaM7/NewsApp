@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/modules/search/search_screen.dart';
@@ -22,21 +23,37 @@ class HomeNewsScreen extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SearchScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      ),
+                    );
                   },
-                  icon: const Icon(Icons.search))
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.deepOrange,
+                  ))
             ],
           ),
           drawer: const SettingsScreen(),
-          bottomNavigationBar: BottomNavigationBar(
+          bottomNavigationBar: ConvexAppBar(
+            style: TabStyle.reactCircle,
+            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+            activeColor: Colors.deepOrange,
+            color: Colors.grey,
+            initialActiveIndex: cubit.currentIndex,
             items: cubit.items,
-            currentIndex: cubit.currentIndex,
             onTap: (index) {
               cubit.changeNavbarIndex(index);
             },
           ),
+          // BottomNavigationBar(
+          //   items: cubit.items,
+          //   currentIndex: cubit.currentIndex,
+          //   onTap: (index) {
+          //     cubit.changeNavbarIndex(index);
+          //   },
+          // ),
           body: cubit.screens[cubit.currentIndex],
         );
       },

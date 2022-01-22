@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/models/news.dart';
@@ -17,25 +18,23 @@ class AppCubit extends Cubit<AppStates> {
 
   changeTheme() {
     isDark = !isDark;
-    CacheHelper.storageData(key: 'isDark', value: isDark)
+    CachedHelper.savePref(key: 'isDark', value: isDark)
         .then((value) => emit(NewsChangeThemeState()));
   }
 
   getTheme() {
-    isDark = CacheHelper.getData(key: 'isDark') ?? false;
+    isDark = CachedHelper.getPref(key: 'isDark') ?? false;
     emit(NewsGetThemeState());
   }
 
   News news = News();
   int currentIndex = 0;
-  List<BottomNavigationBarItem> items = const [
-    BottomNavigationBarItem(
-        icon: Icon(Icons.stacked_bar_chart), label: 'Business'),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.science_outlined), label: 'Science'),
-    BottomNavigationBarItem(
-        icon: Icon(Icons.sports_esports_outlined), label: 'Sports'),
+  List<TabItem> items = const [
+    TabItem(icon: Icons.stacked_bar_chart, title: 'Business'),
+    TabItem(icon: Icons.science_outlined, title: 'Science'),
+    TabItem(icon: Icons.sports_esports_outlined, title: 'Sports'),
   ];
+
   changeNavbarIndex(int index) {
     currentIndex = index;
     emit(NewsChangeNavBarStates());
@@ -47,17 +46,27 @@ class AppCubit extends Cubit<AppStates> {
     const SportsScreen(),
   ];
 
+  changeRadioValue(String value) {
+    CachedHelper.savePref(key: 'countryKey', value: value);
+    countryKey = value;
+    getBusinessData();
+    getSportsData();
+    getScienceData();
+  }
+
   List<News> business = [];
   List<News> sports = [];
   List<News> science = [];
   List<News> search = [];
-  var countryKey = CacheHelper.getData(key: 'countryKey') ?? 'us';
+  var countryKey = CachedHelper.getPref(key: 'countryKey') ?? 'eg';
+
   getBusinessData() {
     DioHelper.getData(path: 'v2/top-headlines', quires: {
       'country': countryKey,
       'category': 'business',
       'apiKey': '2d229d8ac5254240bd2531ec179d123a',
     }).then((value) {
+      business = [];
       List data;
       data = value.data!['articles'];
       for (var article in data) {
@@ -80,6 +89,7 @@ class AppCubit extends Cubit<AppStates> {
       'category': 'science',
       'apiKey': '2d229d8ac5254240bd2531ec179d123a',
     }).then((value) {
+      science = [];
       List data;
       data = value.data!['articles'];
       for (var article in data) {
@@ -102,6 +112,7 @@ class AppCubit extends Cubit<AppStates> {
       'category': 'sports',
       'apiKey': '2d229d8ac5254240bd2531ec179d123a',
     }).then((value) {
+      sports = [];
       List data;
       data = value.data!['articles'];
       for (var article in data) {

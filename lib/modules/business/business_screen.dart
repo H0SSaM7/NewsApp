@@ -16,8 +16,6 @@ class BusinessScreen extends StatelessWidget {
           if (AppCubit.get(context).business.isEmpty) {
             return shimmerSkeleton();
           } else {
-            return shimmerSkeleton();
-
             return buildListViewArticles(articles);
           }
         });

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:news_app/modules/details/details_screen.dart';
 import 'package:news_app/shared/components/widgets/shimmer_loading_widget.dart';
 
@@ -9,11 +10,13 @@ Widget buildListViewArticles(List<dynamic> articles) {
         return InkWell(
           onTap: () {
             Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => DetailsScreen(
-                          article: articles[index],
-                        )));
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsScreen(
+                  article: articles[index],
+                ),
+              ),
+            );
           },
           child: Container(
             margin: const EdgeInsets.all(11),
@@ -38,7 +41,8 @@ Widget buildListViewArticles(List<dynamic> articles) {
                           style: Theme.of(context).textTheme.bodyText1),
                       const Spacer(),
                       Text(
-                        articles[index].publishAt!,
+                        DateFormat.yMMMMd()
+                            .format(DateTime.parse(articles[index].publishAt!)),
                         style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
