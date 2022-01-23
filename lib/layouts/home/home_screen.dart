@@ -18,6 +18,9 @@ class HomeNewsScreen extends StatelessWidget {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
           appBar: AppBar(
+            iconTheme: const IconThemeData(
+              color: Colors.deepOrange,
+            ),
             title: const Text('News App'),
             actions: [
               IconButton(
