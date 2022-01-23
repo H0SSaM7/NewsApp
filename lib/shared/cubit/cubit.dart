@@ -110,6 +110,7 @@ class AppCubit extends Cubit<AppStates> {
   getSportsData() {
     SportsNewsApi().getNews(countryKey).then(
       (value) {
+        if (value.isEmpty) {}
         sports = value;
         emit(NewsGettingSportsData());
       },
@@ -118,26 +119,6 @@ class AppCubit extends Cubit<AppStates> {
         NewsErrorGettingSportsData();
       },
     );
-    // DioHelper.getData(path: 'v2/top-headlines', quires: {
-    //   'country': countryKey,
-    //   'category': 'sports',
-    //   'apiKey': '2d229d8ac5254240bd2531ec179d123a',
-    // }).then((value) {
-    //   sports = [];
-    //   List data;
-    //   data = value.data!['articles'];
-    //   for (var article in data) {
-    //     if (value.statusCode == 200) {
-    //       sports.add(news.fromJson(article));
-    //     } else {
-    //       throw ('states code error');
-    //     }
-    //   }
-    //   emit(NewsGettingSportsData());
-    // }).catchError((onError) {
-    //   emit(NewsErrorGettingSportsData());
-    //   debugPrint(onError.toString() + '(error in getting business data)');
-    // });
   }
 
   getSearchData({required String value}) {

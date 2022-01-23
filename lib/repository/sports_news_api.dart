@@ -17,8 +17,10 @@ class SportsNewsApi extends NewsRepository {
           'apiKey': '2d229d8ac5254240bd2531ec179d123a',
         },
       );
-      for (var element in data.data!['articles']) {
-        sportsList.add(newsModel.fromJson(element));
+      if (data.statusCode == 200) {
+        for (var element in data.data!['articles']) {
+          sportsList.add(newsModel.fromJson(element));
+        }
       }
     } catch (err) {
       print(err.toString());

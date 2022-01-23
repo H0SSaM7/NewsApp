@@ -15,11 +15,14 @@ class SettingsScreen extends StatelessWidget {
         AppCubit _cubit = AppCubit.get(context);
         return SafeArea(
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.75,
+            width: MediaQuery.of(context).size.width * 0.8,
             decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: const BorderRadiusDirectional.only(
-                    bottomEnd: Radius.elliptical(200, 200))),
+              color: Theme.of(context).scaffoldBackgroundColor,
+              borderRadius: const BorderRadiusDirectional.only(
+                bottomEnd: Radius.elliptical(20, 20),
+                topEnd: Radius.elliptical(20, 20),
+              ),
+            ),
             child: Column(
               children: [
                 const SizedBox(height: 20),
