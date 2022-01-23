@@ -58,7 +58,7 @@ class DetailsScreen extends StatelessWidget {
               ),
               Text(article.description ?? '',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        color: Colors.grey[700],
+                        color: Colors.grey[500],
                       )),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
@@ -75,7 +75,7 @@ class DetailsScreen extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .bodyText1!
-                    .copyWith(color: Colors.grey[700]),
+                    .copyWith(color: Colors.grey[500]),
               ),
               const SizedBox(
                 height: 20,

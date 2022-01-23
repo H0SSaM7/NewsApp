@@ -62,7 +62,10 @@ class SettingsScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     ListTile(
-                                      title: const Text('Egypt'),
+                                      title: const Text(
+                                        'Egypt',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
                                       leading: Radio<String>(
                                         value: 'eg',
                                         groupValue: _cubit.countryKey,
@@ -73,7 +76,10 @@ class SettingsScreen extends StatelessWidget {
                                       ),
                                     ),
                                     ListTile(
-                                      title: const Text('USA'),
+                                      title: const Text(
+                                        'USA',
+                                        style: TextStyle(color: Colors.black),
+                                      ),
                                       leading: Radio<String>(
                                         value: 'us',
                                         groupValue: _cubit.countryKey,

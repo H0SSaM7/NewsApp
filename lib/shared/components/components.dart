@@ -66,23 +66,20 @@ Widget buildListViewArticles(List<dynamic> articles) {
 }
 
 Widget getImage({String? url, required double width, required double height}) {
-  Widget image;
-  if (url == null) {
-    image = Image.asset(
+  try {
+    return Image.network(
+      url!,
+      width: width,
+      height: height,
+      fit: BoxFit.fill,
+    );
+  } catch (e) {
+    return Image.asset(
       'images/noImage.png',
       width: width,
       height: height,
       fit: BoxFit.fill,
     );
-    return image;
-  } else {
-    image = Image.network(
-      url,
-      width: width,
-      height: height,
-      fit: BoxFit.fill,
-    );
-    return image;
   }
 }
 
@@ -124,7 +121,21 @@ TextFormField defaultFormField({
           ),
         ),
         border: OutlineInputBorder(
-            borderSide: BorderSide(color: Theme.of(context).hintColor)),
+          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(
+            color: Colors.deepOrange,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: const BorderSide(
+              color: Colors.deepOrange,
+            )),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: const BorderSide(
+              color: Colors.deepOrange,
+            )),
         prefixIcon: icon,
         hintText: title,
         hintStyle: Theme.of(context).textTheme.subtitle1),
