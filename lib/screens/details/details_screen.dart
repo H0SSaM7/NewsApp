@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/news_model.dart';
-
-import 'package:news_app/shared/components/components.dart';
-import 'package:news_app/view/web_view/web_view.dart';
+import 'package:news_app/screens/web_view/web_view.dart';
+import 'package:news_app/utill/components/components.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key, required this.article}) : super(key: key);

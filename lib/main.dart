@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/layouts/home/home_screen.dart';
-import 'package:news_app/shared/bloc_observer.dart';
-import 'package:news_app/shared/cubit/cubit.dart';
-import 'package:news_app/shared/cubit/states.dart';
-import 'package:news_app/shared/network/local/cache_helper.dart';
-import 'package:news_app/shared/network/remote/dio_helper.dart';
-import 'package:news_app/shared/theme/themes.dart';
+import 'package:news_app/controllers/cubit.dart';
+import 'package:news_app/controllers/states.dart';
+import 'package:news_app/data/data_source/local/cache_helper.dart';
+import 'package:news_app/data/data_source/remote/dio_helper.dart';
+import 'package:news_app/screens/home/home_screen.dart';
+import 'package:news_app/utill/bloc_observer.dart';
+import 'package:news_app/utill/theme/themes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

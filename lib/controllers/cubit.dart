@@ -1,15 +1,14 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/controllers/states.dart';
+import 'package:news_app/data/data_source/local/cache_helper.dart';
+import 'package:news_app/data/data_source/remote/dio_helper.dart';
+import 'package:news_app/data/repository/sports_news_api.dart';
 import 'package:news_app/models/news_model.dart';
-import 'package:news_app/repository/sports_news_api.dart';
-
-import 'package:news_app/shared/cubit/states.dart';
-import 'package:news_app/shared/network/local/cache_helper.dart';
-import 'package:news_app/shared/network/remote/dio_helper.dart';
-import 'package:news_app/view/business/business_screen.dart';
-import 'package:news_app/view/science/science_screen.dart';
-import 'package:news_app/view/sports/sports_screen.dart';
+import 'package:news_app/screens/business/business_screen.dart';
+import 'package:news_app/screens/science/science_screen.dart';
+import 'package:news_app/screens/sports/sports_screen.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(NewsInitialStates());

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/shared/cubit/cubit.dart';
-import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/controllers/cubit.dart';
+import 'package:news_app/controllers/states.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({

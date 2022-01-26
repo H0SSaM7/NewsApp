@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
+import 'package:news_app/data/data_source/remote/dio_helper.dart';
+import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/models/news_model.dart';
-import 'package:news_app/repository/news_repository.dart';
-import 'package:news_app/shared/network/remote/dio_helper.dart';
 
 class SportsNewsApi extends NewsRepository {
   @override
@@ -23,7 +24,7 @@ class SportsNewsApi extends NewsRepository {
         }
       }
     } catch (err) {
-      print(err.toString());
+      debugPrint(err.toString());
     }
     return sportsList;
   }

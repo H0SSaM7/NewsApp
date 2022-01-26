@@ -1,11 +1,10 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:news_app/shared/cubit/cubit.dart';
-import 'package:news_app/shared/cubit/states.dart';
-import 'package:news_app/view/search/search_screen.dart';
-import 'package:news_app/view/settings/settings_screen.dart';
+import 'package:news_app/controllers/cubit.dart';
+import 'package:news_app/controllers/states.dart';
+import 'package:news_app/screens/search/search_screen.dart';
+import 'package:news_app/screens/settings/settings_screen.dart';
 
 class HomeNewsScreen extends StatelessWidget {
   const HomeNewsScreen({Key? key}) : super(key: key);
