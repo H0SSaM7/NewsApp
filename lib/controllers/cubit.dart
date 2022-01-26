@@ -107,11 +107,12 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   getSportsData() {
-    GetNewsRepo().getNews(countryKey).then(
+    GetNewsRepo().getNews(countryKey, categoryType.sport).then(
       (value) {
-        if (value.isEmpty) {}
-        sports = value;
-        emit(NewsGettingSportsData());
+        if (value != null) {
+          sports = value;
+          emit(NewsGettingSportsData());
+        }
       },
     ).catchError(
       (err) {
