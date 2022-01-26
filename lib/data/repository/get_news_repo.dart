@@ -1,11 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:news_app/data/data_source/remote/dio_helper.dart';
-import 'package:news_app/data/repository/news_repository.dart';
 import 'package:news_app/models/news_model.dart';
 
-class SportsNewsApi extends NewsRepository {
-  @override
+class GetNewsRepo {
   Future<List<NewsModel>> getNews(String countryKey) async {
     NewsModel newsModel = NewsModel();
     List<NewsModel> sportsList = [];

@@ -2,9 +2,9 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/controllers/states.dart';
-import 'package:news_app/data/data_source/local/cache_helper.dart';
+import 'package:news_app/data/data_source/local/shared_pref_helper.dart';
 import 'package:news_app/data/data_source/remote/dio_helper.dart';
-import 'package:news_app/data/repository/sports_news_api.dart';
+import 'package:news_app/data/repository/get_news_repo.dart';
 import 'package:news_app/models/news_model.dart';
 import 'package:news_app/screens/business/business_screen.dart';
 import 'package:news_app/screens/science/science_screen.dart';
@@ -18,12 +18,12 @@ class AppCubit extends Cubit<AppStates> {
 
   changeTheme() {
     isDark = !isDark;
-    CachedHelper.savePref(key: 'isDark', value: isDark)
+    SharedPrefHelper.savePref(key: 'isDark', value: isDark)
         .then((value) => emit(NewsChangeThemeState()));
   }
 
   getTheme() {
-    isDark = CachedHelper.getPref(key: 'isDark') ?? false;
+    isDark = SharedPrefHelper.getPref(key: 'isDark') ?? false;
     emit(NewsGetThemeState());
   }
 
@@ -47,7 +47,7 @@ class AppCubit extends Cubit<AppStates> {
   ];
 
   changeRadioValue(String value) {
-    CachedHelper.savePref(key: 'countryKey', value: value);
+    SharedPrefHelper.savePref(key: 'countryKey', value: value);
     countryKey = value;
     getBusinessData();
     getSportsData();
@@ -58,7 +58,7 @@ class AppCubit extends Cubit<AppStates> {
   List<NewsModel> sports = [];
   List<NewsModel> science = [];
   List<NewsModel> search = [];
-  var countryKey = CachedHelper.getPref(key: 'countryKey') ?? 'eg';
+  var countryKey = SharedPrefHelper.getPref(key: 'countryKey') ?? 'eg';
 
   getBusinessData() {
     DioHelper.getData(path: 'v2/top-headlines', quires: {
@@ -107,7 +107,7 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   getSportsData() {
-    SportsNewsApi().getNews(countryKey).then(
+    GetNewsRepo().getNews(countryKey).then(
       (value) {
         if (value.isEmpty) {}
         sports = value;

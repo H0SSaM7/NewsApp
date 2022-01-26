@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/controllers/cubit.dart';
 import 'package:news_app/controllers/states.dart';
-import 'package:news_app/data/data_source/local/cache_helper.dart';
+import 'package:news_app/data/data_source/local/shared_pref_helper.dart';
 import 'package:news_app/data/data_source/remote/dio_helper.dart';
 import 'package:news_app/screens/home/home_screen.dart';
 import 'package:news_app/utill/bloc_observer.dart';
@@ -13,7 +13,7 @@ void main() {
   BlocOverrides.runZoned(
     () async {
       DioHelper.init();
-      await CachedHelper.init();
+      await SharedPrefHelper.init();
       // bool? storageTheme= CacheHelper.getData(key: 'isDark');
       runApp(const MyApp());
     },
