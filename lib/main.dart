@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/controllers/cubit.dart';
+import 'package:news_app/controllers/news_bloc/news_bloc.dart';
 import 'package:news_app/controllers/states.dart';
 import 'package:news_app/data/data_source/local/shared_pref_helper.dart';
 import 'package:news_app/data/data_source/remote/dio_helper.dart';
+import 'package:news_app/data/repository/get_news_repo.dart';
 import 'package:news_app/screens/home/home_screen.dart';
 import 'package:news_app/utill/bloc_observer.dart';
 import 'package:news_app/utill/theme/themes.dart';
@@ -26,12 +28,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit()
-        ..getBusinessData()
-        ..getScienceData()
-        ..getSportsData()
-        ..getTheme(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppCubit()
+            ..getBusinessData()
+            ..getScienceData()
+            ..getSportsData()
+            ..getTheme(),
+        ),
+        BlocProvider(
+            create: (context) =>
+                NewsBloc(news: GetNewsRepo())..add(NewsEvent())),
+      ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, states) {},
         builder: (context, states) {

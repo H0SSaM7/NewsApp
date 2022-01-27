@@ -32,8 +32,8 @@ class GetNewsRepo {
       if (data.statusCode == 200) {
         for (var element in data.data!['articles']) {
           sportsList.add(newsModel.fromJson(element));
-          return sportsList;
         }
+        return sportsList;
       }
     } catch (err) {
       debugPrint(err.toString());
