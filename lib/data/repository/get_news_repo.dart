@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:news_app/data/data_source/remote/dio_helper.dart';
+import 'package:news_app/data/data_provider/remote/dio_helper.dart';
+
 import 'package:news_app/models/news_model.dart';
 
 enum categoryType { business, sport, science }

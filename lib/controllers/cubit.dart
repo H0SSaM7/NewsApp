@@ -2,8 +2,9 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/controllers/states.dart';
-import 'package:news_app/data/data_source/local/shared_pref_helper.dart';
-import 'package:news_app/data/data_source/remote/dio_helper.dart';
+import 'package:news_app/data/data_provider/local/shared_pref_helper.dart';
+import 'package:news_app/data/data_provider/remote/dio_helper.dart';
+
 import 'package:news_app/data/repository/get_news_repo.dart';
 import 'package:news_app/models/news_model.dart';
 import 'package:news_app/screens/business/business_screen.dart';

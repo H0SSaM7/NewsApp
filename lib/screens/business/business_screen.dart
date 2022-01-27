@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/controllers/news_bloc/news_bloc.dart';
+import 'package:news_app/controllers/cubit.dart';
+import 'package:news_app/controllers/states.dart';
 import 'package:news_app/utill/components/components.dart';
-import 'package:news_app/utill/components/widgets/shimmer_loading_widget.dart';
 
 class BusinessScreen extends StatelessWidget {
   const BusinessScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NewsBloc, NewsState>(
+    return BlocBuilder<AppCubit, AppStates>(
       builder: (context, state) {
-        if (state is BusinessNewsSuccessState) {
-          return buildListViewArticles(state.businessList);
+        if (AppCubit.get(context).business.isNotEmpty) {
+          return buildListViewArticles(AppCubit.get(context).business);
         }
-        return Container();
+        return shimmerSkeleton();
       },
     );
   }

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/controllers/cubit.dart';
-import 'package:news_app/controllers/news_bloc/news_bloc.dart';
 import 'package:news_app/controllers/states.dart';
-import 'package:news_app/data/data_source/local/shared_pref_helper.dart';
-import 'package:news_app/data/data_source/remote/dio_helper.dart';
-import 'package:news_app/data/repository/get_news_repo.dart';
+import 'package:news_app/data/data_provider/remote/dio_helper.dart';
 import 'package:news_app/screens/home/home_screen.dart';
 import 'package:news_app/utill/bloc_observer.dart';
 import 'package:news_app/utill/theme/themes.dart';
+import 'data/data_provider/local/shared_pref_helper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,9 +35,6 @@ class MyApp extends StatelessWidget {
             ..getSportsData()
             ..getTheme(),
         ),
-        BlocProvider(
-            create: (context) =>
-                NewsBloc(news: GetNewsRepo())..add(NewsEvent())),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, states) {},
